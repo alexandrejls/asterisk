@@ -3,7 +3,7 @@ echo -e "Instalando as dependências do Asterisk, aguarde..."
 	# opção do comando: &>> (redirecionar a saída padrão)
 	# opção do comando apt: -y (yes) | $(uname -r) = kernel-release, \ (bar left) quedra de linha na opção do apt
 	apt install -y build-essential libssl-dev libelf-dev libncurses5-dev libnewt-dev libxml2-dev 
-	apt install -y make wget openssl ncurses-base newt-tcl libxml2-dev gcc sqlite
+	apt install -y make wget openssl ncurses-base newt-tcl libxml2-dev gcc sqlite mysql-server
 echo -e "Dependências instaladas com sucesso!!!"
 sleep 3
 echo
