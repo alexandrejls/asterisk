@@ -14,7 +14,7 @@ LOG="/var/log/$(echo $0 | cut -d'/' -f2)"
 # opção do comando date: + (format), %d (day), %m (month), %Y (year 1970), %H (hour 24), %M (minute 60)
 echo -e "Início do script $0 em: `date +%d/%m/%Y-"("%H:%M")"`\n" &>> $LOG
 #
-bash var_d_down.sh >> $LOG
+bash var_d_down.sh &>> $LOG
 # Exportando o recurso de Noninteractive do Debconf para não solicitar telas de configuração
 export DEBIAN_FRONTEND="noninteractive"
 #
@@ -27,7 +27,7 @@ sleep 5
 echo
 #
 echo -e "Procedimentos de Repositórios, aguarde..."
-bash repositorio.sh
+bash repositorio.sh &>> $LOG
 
 
 
