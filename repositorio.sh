@@ -15,3 +15,11 @@ echo -e "Listas atualizadas com sucesso!!!"
 sleep 1
 echo
 #
+echo -e "Removendo software desnecessários, aguarde..."
+	# opção do comando: &>> (redirecionar a saída padrão)
+	# opção do comando apt: -y (yes)
+	apt -y autoremove &>> $LOG
+echo -e "Software removidos com sucesso!!!"
+sleep 1
+echo
+#
