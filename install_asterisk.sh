@@ -14,7 +14,7 @@ echo -e "Instalando as dependências do Asterisk, aguarde..."
 	# opção do comando apt: -y (yes) | $(uname -r) = kernel-release, \ (bar left) quedra de linha na opção do apt
 	apt install -y build-essential libssl-dev libelf-dev libncurses5-dev libnewt-dev libxml2-dev 
 	apt install -y make wget openssl ncurses-base newt-tcl libxml2-dev gcc sqlite mysql-server
-echo -e "Dependências OK!!!"
+echo -e "OK!!!"
 sleep 3
 echo
 #
@@ -26,4 +26,7 @@ if [ ! -f "/usr/src/asterisk-17-current.tar.gz" ]; then
 else
     echo "O arquivo existe, não será feito Download!!"
 fi
-
+echo -e "OK!!!"
+sleep 3
+echo
+#
