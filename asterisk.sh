@@ -18,8 +18,11 @@ bash var_d_down.sh >> $LOG
 # Exportando o recurso de Noninteractive do Debconf para não solicitar telas de configuração
 export DEBIAN_FRONTEND="noninteractive"
 #
-echo -e "Aguarde, esse processo demora um pouco dependendo do seu Link de Internet...\n"
-echo -e "Após a instalação, para acessar o CLI do Asterisk, digite o comando: asterisk -rvvvv"
+echo -e ###################################################################################
+echo -e # "Aguarde, esse processo demora um pouco dependendo do seu Link de Internet...\n"#
+echo -e # "Após a instalação, para acessar o CLI do Asterisk, digite um dos comando:      #
+echo -e # 			"asterisk -rvvvv" ou "rasterisk"			  #
+echo -e ###################################################################################
 sleep 5
 echo
 #
@@ -30,8 +33,23 @@ echo -e "Repositório adicionado com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
+echo -e "Adicionando o Repositório Multiversão do Apt, aguarde..."
+	# opção do comando: &>> (redirecionar a saída padrão)
+	add-apt-repository multiverse &>> $LOG
+echo -e "Repositório adicionado com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
+echo -e "Atualizando as listas do Apt, aguarde..."
+	#opção do comando: &>> (redirecionar a saída padrão)
+	apt update &>> $LOG
+echo -e "Listas atualizadas com sucesso!!!, continuando com o script..."
+sleep 5
+echo
+#
 
 
+##########################################################################################################
 	# script para calcular o tempo gasto (SCRIPT MELHORADO, CORRIGIDO FALHA DE HORA:MINUTO:SEGUNDOS)
 	# opção do comando date: +%T (Time)
 	HORAFINAL=`date +%T`
