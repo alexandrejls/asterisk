@@ -10,7 +10,7 @@ echo
 #
 echo -e "Baixando e instalando atualizações, aguarde..."
 	#opção do comando: &>> (redirecionar a saída padrão)
-	apt upgrade 
+	yes | apt upgrade 
 echo -e "Listas atualizadas com sucesso!!!"
 sleep 1
 echo
