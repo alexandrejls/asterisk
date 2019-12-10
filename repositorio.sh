@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+export DEBIAN_FRONTEND="noninteractive"
 echo -e "Atualizando as listas do Apt, aguarde..."
 	#opção do comando: &>> (redirecionar a saída padrão)
 	apt update 
