@@ -33,12 +33,15 @@ echo
 #
 echo -e "Procedimentos de Repositórios, aguarde..."
 bash repositorio.sh
-clear
 echo -e "Procedimentos de Repositórios, realizados com sucesso..."
+clear
 sleep 1
 echo
 #
+echo -e "Instalando o Asterisk, aguarde..."
+bash install_asterisk.sh
 
+#
 
 
 
