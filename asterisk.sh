@@ -18,10 +18,10 @@ bash var_d_down.sh >> $LOG
 # Exportando o recurso de Noninteractive do Debconf para não solicitar telas de configuração
 export DEBIAN_FRONTEND="noninteractive"
 #
+clear
 echo -e "########################################################################################"
-echo -e "##### Aguarde, esse processo demora um pouco dependendo do seu Link de Internet... #####"
 echo -e "##### Após a instalação, para acessar o CLI do Asterisk, digite um dos comando:    #####"
-echo -e "##### asterisk -rvvvv" ou "rasterisk                                               #####"
+echo -e "##### asterisk -rvvvv" ou "rasterisk                                                 #####"
 echo -e "########################################################################################"
 sleep 5
 echo
