@@ -1,3 +1,4 @@
+#!/bin/bash
 # Variável da Data Inicial para calcular o tempo de execução do script (VARIÁVEL MELHORADA)
 # opção do comando date: +%T (Time)
 HORAINICIAL=`date +%T`
@@ -7,7 +8,7 @@ HORAINICIAL=`date +%T`
 # $0 (variável de ambiente do nome do comando)
 LOG="/var/log/$(echo $0 | cut -d'/' -f2)"
 #
-bash var_d_down.sh -v &>> $LOG
+bash var_d_down.sh >> $LOG
 # Exportando o recurso de Noninteractive do Debconf para não solicitar telas de configuração
 export DEBIAN_FRONTEND="noninteractive"
 #
