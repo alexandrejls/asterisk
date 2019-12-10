@@ -1,7 +1,4 @@
 #!/bin/bash
-echo -e "Instalando o Asterisk, aguarde..."
-echo
-#
 echo -e "Instalando as dependências do Asterisk, aguarde..."
 	# opção do comando: &>> (redirecionar a saída padrão)
 	# opção do comando apt: -y (yes) | $(uname -r) = kernel-release, \ (bar left) quedra de linha na opção do apt
