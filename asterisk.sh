@@ -25,15 +25,9 @@ echo -e "#######################################################################
 sleep 1
 echo
 #
-echo -e "Procedimentos de variáveis, aguarde..."
-bash var_d_down.sh 
-echo -e "Procedimentos de variáveis, realizados com sucesso..."
-sleep 1
-echo
-#
 echo -e "Procedimentos de Repositórios, aguarde..."
 bash repositorio.sh
-echo -e "Procedimentos de Repositórios, realizados com sucesso..."
+echo -e "Procedimentos de Repositórios, OK..."
 clear
 sleep 1
 echo
