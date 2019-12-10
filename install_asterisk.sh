@@ -1,4 +1,5 @@
 #!/bin/bash
+export DEBIAN_FRONTEND="noninteractive"
 # Declarando as variaveis de Download do Asterisk: http://downloads.asterisk.org/pub/telephony/
 DAHDI="http://downloads.asterisk.org/pub/telephony/dahdi-linux/dahdi-linux-current.tar.gz"
 DAHDITOOLS="http://downloads.asterisk.org/pub/telephony/dahdi-tools/dahdi-tools-current.tar.gz"
