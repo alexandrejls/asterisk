@@ -22,19 +22,23 @@ echo -e "#######################################################################
 echo -e "##### Após a instalação, para acessar o CLI do Asterisk, digite um dos comando:    #####"
 echo -e "##### asterisk -rvvvv" ou "rasterisk                                                 #####"
 echo -e "########################################################################################"
-sleep 1
+sleep 3
 echo
 #
 echo -e "Procedimentos de Repositórios, aguarde..."
 bash repositorio.sh
-echo -e "Procedimentos de Repositórios, OK..."
+echo -e "OK..."
 clear
-sleep 1
+sleep 3
 echo
 #
 echo -e "Instalando o Asterisk, aguarde..."
 bash install_asterisk.sh
-
+echo -e "OK..."
+clear
+sleep 3
+echo
+#
 #
 
 
