@@ -11,19 +11,19 @@ echo
 echo -e "Download e instalação do DAHDI, aguarde..."
 	# opção do comando: &>> (redirecionar a saída padrão)
 	# opção do comando wget: -O (file)
-	wget -O dahdi-linux.tar.gz $DAHDI &>> $LOG
+	wget -O dahdi-linux.tar.gz $DAHDI
 	# opção do comando tar: -z (gzip), -x (extract), -v (verbose), -f (file)
-	tar -zxvf dahdi-linux.tar.gz &>> $LOG
+	tar -zxvf dahdi-linux.tar.gz
 	# acessando diretório do dahdi-linux
-	cd dahdi-linux*/ &>> $LOG
+	cd dahdi-linux*/ 
 	# preparação e configuração do source para compilação
-	./configure  &>> $LOG
+	./configure 
 	# desfaz o processo de compilação anterior
-	make clean  &>> $LOG
+	make clean  
 	# compila todas as opções do software
-	make all  &>> $LOG
+	make all  
 	# executa os comandos para instalar o programa
-	make install  &>> $LOG
+	make install 
 	# opção do comando cd: .. (dois pontos sequenciais - Subir uma pasta)
 	cd ..
 echo -e "DAHDI instalado com sucesso!!!, continuando com o script..."
