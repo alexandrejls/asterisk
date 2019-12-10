@@ -28,6 +28,19 @@ echo
 #
 echo -e "Procedimentos de Repositórios, aguarde..."
 bash repositorio.sh
+clear
+echo -e "Procedimentos de Repositórios, realizados com sucesso..."
+sleep 1
+echo
+#
+
+
+
+
+
+
+
+
 
 
 ##########################################################################################################
