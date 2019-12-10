@@ -8,3 +8,25 @@ echo -e "Dependências instaladas com sucesso!!!"
 sleep 3
 echo
 #
+echo -e "Download e instalação do DAHDI, aguarde..."
+	# opção do comando: &>> (redirecionar a saída padrão)
+	# opção do comando wget: -O (file)
+	wget -O dahdi-linux.tar.gz $DAHDI &>> $LOG
+	# opção do comando tar: -z (gzip), -x (extract), -v (verbose), -f (file)
+	tar -zxvf dahdi-linux.tar.gz &>> $LOG
+	# acessando diretório do dahdi-linux
+	cd dahdi-linux*/ &>> $LOG
+	# preparação e configuração do source para compilação
+	./configure  &>> $LOG
+	# desfaz o processo de compilação anterior
+	make clean  &>> $LOG
+	# compila todas as opções do software
+	make all  &>> $LOG
+	# executa os comandos para instalar o programa
+	make install  &>> $LOG
+	# opção do comando cd: .. (dois pontos sequenciais - Subir uma pasta)
+	cd ..
+echo -e "DAHDI instalado com sucesso!!!, continuando com o script..."
+sleep 5
+echo	
+#
