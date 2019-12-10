@@ -20,7 +20,10 @@ echo
 #
 cd /usr/src
 ASTERISK="http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-17-current.tar.gz"
-IF EXIST asterisk-17-current.tar.gz GOTO 1
-wget -O asterisk-17-current.tar.gz $ASTERISK
-:1
+if [ ! -f "/usr/src/asterisk-17-current.tar.gz" ]; then
+    echo "O arquivo não existe e será feito Download!!"
+    wget -O asterisk-17-current.tar.gz $ASTERISK
+else
+    echo "O arquivo existe, não será feito Download!!"
+fi
 
