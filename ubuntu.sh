@@ -18,11 +18,13 @@ DAHDI="http://downloads.asterisk.org/pub/telephony/dahdi-linux/dahdi-linux-curre
 echo -e "Download e instalação do DAHDI, aguarde..."
 if [ ! -f "/usr/src/DAHDI.tar.gz" ]; then
     echo "O arquivo não existe e será feito Download!!"
+    cd /usr/src/
     wget -O DAHDI.tar.gz $DAHDI
 else
     echo "O arquivo existe, não será feito Download!!"
 fi
-	tar -zxvf DAHDI.tar.gz && cd DAHDI*/
+	tar -zxvf DAHDI.tar.gz 
+	cd DAHDI*/
 	make && make install && make config
 	cd ..
 echo -e "DAHDI instalado com sucesso!!!, continuando com o script..."
