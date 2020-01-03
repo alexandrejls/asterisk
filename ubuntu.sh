@@ -34,15 +34,15 @@ echo
 ############################## DOWNLOAD E INSTALAÇÃO DO DAHDITOOLS ##############################
 DAHDITOOLS="http://downloads.asterisk.org/pub/telephony/dahdi-tools/dahdi-tools-current.tar.gz"
 echo -e "Download e instalação do DAHDITOOLS, aguarde..."
-if [ ! -f "/usr/src/DAHDITOOLS.tar.gz" ]; then
+if [ ! -f "/usr/src/dahdi-tools.tar.gz" ]; then
     echo "O arquivo não existe e será feito Download!!"
     cd /usr/src/
-    wget -O DAHDITOOLS.tar.gz $DAHDITOOLS
+    wget -O dahdi-tools.tar.gz $DAHDITOOLS
 else
     echo "O arquivo existe, não será feito Download!!"
 fi
-	tar -zxvf DAHDITOOLS.tar.gz 
-	cd dahdit*/
+	tar -zxvf dahdi-tools.tar.gz 
+	cd dahdi-tools*/
 	autoreconf -i && ./configure && make clean && make all && make install 
 	cd ..
 echo -e "DAHDITOOLS instalado com sucesso!!!, continuando com o script..."
