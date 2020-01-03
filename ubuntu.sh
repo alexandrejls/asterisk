@@ -7,6 +7,10 @@ sleep 5
 apt update &>> $LOG
 apt-get install -y build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev linux-headers-$(uname -r) &>> $LOG
 apt-get install -y libsqlite3-dev uuid-dev git subversion libjansson-dev sqlite3 autoconf automake libtool libedit-dev &>> $LOG
+apt-get install -y libelf-dev libsqlite3-dev flex bison unzip sox openssl zlib1g-dev unixodbc unixodbc-dev vim &>> $LOG
+apt install -y build-essential libssl-dev libelf-dev libncurses5-dev libnewt-dev libxml2-dev  &>> $LOG
+apt install -y make wget openssl ncurses-base newt-tcl libxml2-dev gcc sqlite mysql-server &>> $LOG
+apt install -y config-package-dev configure-debian &>> $LOG
 echo "Entrando do diretório /usr/src:"
 cd /usr/src/
 
@@ -27,10 +31,10 @@ else
     sleep 3
 fi
 	tar -zxvf DAHDI.tar.gz &>> $LOG 
-	cd dahdi*/
-	./configure 
-	make clean 
-	make all 
+	cd dahdi-linux*/ &>> $LOG 
+	./configure  &>> $LOG 
+	make clean  &>> $LOG 
+	make all  &>> $LOG 
 	make install
 	cd ..
 echo -e "DAHDI instalado com sucesso!!!, continuando com o script..."
@@ -50,8 +54,8 @@ else
 fi
 	tar -zxvf dahdi-tools.tar.gz &>> $LOG
 	cd dahdi-tools*/
-	autoreconf -i 
-	./configure 
+	autoreconf -i  &>> $LOG
+	./configure  &>> $LOG
 	make clean 
 	make all 
 	make install 
@@ -85,6 +89,7 @@ sleep 5
 echo
 #
 ############################## DOWNLOAD E INSTALAÇÃO DO ASTERISK ##############################
+echo -e "Download e instalação do ASTERISK, aguarde..."
 ASTERISK="http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-17.1.0.tar.gz"
 if [ ! -f "/usr/src/lasterisk-17.1.0.tar.gz" ]; then
     echo "O arquivo não existe e será feito Download!!"
