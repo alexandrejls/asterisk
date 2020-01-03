@@ -24,7 +24,7 @@ else
     echo "O arquivo existe, não será feito Download!!"
 fi
 	tar -zxvf DAHDI.tar.gz 
-	cd DAHDI*/
+	cd dahdi*/
 	make && make install && make config
 	cd ..
 echo -e "DAHDI instalado com sucesso!!!, continuando com o script..."
