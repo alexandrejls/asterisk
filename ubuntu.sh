@@ -2,8 +2,7 @@
 echo "### Instalação do Asterisk no Ubuntu Server ###"
 export DEBIAN_FRONTEND="noninteractive"
 add-apt-repository multiverse 
-mkdir /usr/src/asterisk
-LOG="/usr/src/asterisk/$(echo $0 | cut -d'/' -f2)"
+LOG="/usr/src/asterisk/log/$(echo $0 | cut -d'/' -f2)"
 sleep 5
 apt update &>> $LOG
 apt-get install -y build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev linux-headers-$(uname -r) &>> $LOG
