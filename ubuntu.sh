@@ -37,7 +37,7 @@ echo -e "Download e instalação do DAHDITOOLS, aguarde..."
 if [ ! -f "/usr/src/DAHDITOOLS.tar.gz" ]; then
     echo "O arquivo não existe e será feito Download!!"
     cd /usr/src/
-    wget -O DAHDITOOLS.tar.gz $DAHDI
+    wget -O DAHDITOOLS.tar.gz $DAHDITOOLS
 else
     echo "O arquivo existe, não será feito Download!!"
 fi
