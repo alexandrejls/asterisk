@@ -28,7 +28,10 @@ else
 fi
 	tar -zxvf DAHDI.tar.gz &>> $LOG 
 	cd dahdi*/
-	./configure && make clean && make all && make install
+	./configure 
+	make clean 
+	make all 
+	make install
 	cd ..
 echo -e "DAHDI instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO DAHDI ##############################
@@ -47,7 +50,11 @@ else
 fi
 	tar -zxvf dahdi-tools.tar.gz &>> $LOG
 	cd dahdi-tools*/
-	autoreconf -i && ./configure && make clean && make all && make install 
+	autoreconf -i 
+	./configure 
+	make clean 
+	make all 
+	make install 
 	cd ..
 echo -e "DAHDITOOLS instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO DAHDITOOLS ##############################
@@ -67,10 +74,10 @@ else
 fi
 	tar -zxvf libpri.tar.gz &>> $LOG
 	cd libpri*/ &>> $LOG
-	./configure &>> $LOG
-	make clean  &>> $LOG
-	make all &>> $LOG
-	make install &>> $LOG
+	./configure  
+	make clean   
+	make all  
+	make install  
 	cd ..
 echo -e "LIBPRI instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO LIBPRI ##############################
@@ -89,7 +96,11 @@ else
 fi
 	tar zxvf asterisk* &>> $LOG
 	cd asterisk* &>> $LOG
-	./configure --with-jansson-bundled &&  make menuselect && make && make install && make config
+	./configure --with-jansson-bundled 
+	make menuselect 
+	make 
+	make install 
+	make config
 echo -e "ASTERISK instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO ASTERISK ##############################
 
