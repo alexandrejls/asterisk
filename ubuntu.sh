@@ -12,7 +12,6 @@ cd /usr/src/
 
 PTBRCORE="https://www.asterisksounds.org/pt-br/download/asterisk-sounds-core-pt-BR-sln16.zip"
 PTBREXTRA="https://www.asterisksounds.org/pt-br/download/asterisk-sounds-extra-pt-BR-sln16.zip"
-LIBPRI="http://downloads.asterisk.org/pub/telephony/libpri/libpri-current.tar.gz"
 SOUNDS="/var/lib/asterisk/sounds/pt_BR"
 COUNTRYCODE="55"
 ############################## DOWNLOAD E INSTALAÇÃO DO DAHDI ##############################
@@ -53,4 +52,28 @@ fi
 echo -e "DAHDITOOLS instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO DAHDITOOLS ##############################
 sleep 5
+echo	
+#
+############################## DOWNLOAD E INSTALAÇÃO DO LIBPRI ##############################
+echo -e "Download e instalação do LIBPRI, aguarde..."
+LIBPRI="http://downloads.asterisk.org/pub/telephony/libpri/libpri-current.tar.gz"
+if [ ! -f "/usr/src/libpri.tar.gz" ]; then
+    echo "O arquivo não existe e será feito Download!!"
+    cd /usr/src/
+    wget -O libpri.tar.gz $LIBPRI &>> $LOG
+    sleep 3
+else
+    echo "O arquivo existe, não será feito Download!!"
+fi
+	tar -zxvf libpri.tar.gz &>> $LOG
+	cd libpri*/ &>> $LOG
+	./configure &>> $LOG
+	make clean  &>> $LOG
+	make all &>> $LOG
+	make install &>> $LOG
+	cd ..
+echo -e "LIBPRI instalado com sucesso!!!, continuando com o script..."
+############################## DOWNLOAD E INSTALAÇÃO DO LIBPRI ##############################
+sleep 5
 echo
+#
