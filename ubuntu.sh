@@ -2,9 +2,11 @@
 echo "### Instalação do Asterisk no Ubuntu Server ###"
 export DEBIAN_FRONTEND="noninteractive"
 add-apt-repository multiverse 
+add-apt-repository universe
 LOG="/var/log/$(echo $0 | cut -d'/' -f2)"
 sleep 5
 apt update &>> $LOG
+apt -y upgrade &>> $LOG
 apt-get install -y build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev linux-headers-$(uname -r) &>> $LOG
 apt-get install -y libsqlite3-dev uuid-dev git subversion libjansson-dev sqlite3 autoconf automake libtool libedit-dev &>> $LOG
 apt-get install -y libelf-dev libsqlite3-dev flex bison unzip sox openssl zlib1g-dev unixodbc unixodbc-dev vim &>> $LOG
@@ -33,9 +35,11 @@ fi
 	tar -zxvf DAHDI.tar.gz &>> $LOG 
 	cd dahdi-linux*/ &>> $LOG 
 	./configure  &>> $LOG 
-	make clean  &>> $LOG 
-	make all  &>> $LOG 
+	make &>> $LOG 
+	make clean &>> $LOG 
+	make all &>> $LOG 
 	make install
+	make config &>> $LOG 
 	cd ..
 echo -e "DAHDI instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO DAHDI ##############################
@@ -78,9 +82,10 @@ else
 fi
 	tar -zxvf libpri.tar.gz &>> $LOG
 	cd libpri*/ &>> $LOG
-	./configure  
-	make clean   
-	make all  
+	./configure  &>> $LOG
+	make &>> $LOG
+	make clean &>> $LOG  
+	make all &>> $LOG 
 	make install  
 	cd ..
 echo -e "LIBPRI instalado com sucesso!!!, continuando com o script..."
@@ -99,8 +104,8 @@ if [ ! -f "/usr/src/lasterisk-17.1.0.tar.gz" ]; then
 else
     echo "O arquivo existe, não será feito Download!!"
 fi
-	tar zxvf asterisk* &>> $LOG
-	cd asterisk* &>> $LOG
+	tar -zxvf asterisk-17.1.0.tar.gz &>> $LOG
+	cd asterisk-17.1.0 &>> $LOG
 	./configure --with-jansson-bundled 
 	make menuselect 
 	make 
