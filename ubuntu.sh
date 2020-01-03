@@ -1,10 +1,13 @@
 #!/bin/bash
 echo "### Instalação do Asterisk no Ubuntu Server ###"
 export DEBIAN_FRONTEND="noninteractive"
-clear
 add-apt-repository multiverse 
-apt update
-apt-get install build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev linux-headers-$(uname -r) libsqlite3-dev uuid-dev git subversion libjansson-dev sqlite3 autoconf automake libtool libedit-dev -y
+mkdir /usr/src/asterisk
+LOG="/usr/src/asterisk/$(echo $0 | cut -d'/' -f2)"
+sleep 5
+apt update &>> $LOG
+apt-get install -y build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev linux-headers-$(uname -r) &>> $LOG
+apt-get install -y libsqlite3-dev uuid-dev git subversion libjansson-dev sqlite3 autoconf automake libtool libedit-dev &>> $LOG
 echo "Entrando do diretório /usr/src:"
 cd /usr/src/
 
@@ -20,10 +23,12 @@ if [ ! -f "/usr/src/DAHDI.tar.gz" ]; then
     echo "O arquivo não existe e será feito Download!!"
     cd /usr/src/
     wget -O DAHDI.tar.gz $DAHDI
+    sleep 3
 else
     echo "O arquivo existe, não será feito Download!!"
+    sleep 3
 fi
-	tar -zxvf DAHDI.tar.gz 
+	tar -zxvf DAHDI.tar.gz &>> $LOG 
 	cd dahdi*/
 	./configure && make clean && make all && make install
 	cd ..
@@ -38,10 +43,11 @@ if [ ! -f "/usr/src/dahdi-tools.tar.gz" ]; then
     echo "O arquivo não existe e será feito Download!!"
     cd /usr/src/
     wget -O dahdi-tools.tar.gz $DAHDITOOLS
+    sleep 3
 else
     echo "O arquivo existe, não será feito Download!!"
 fi
-	tar -zxvf dahdi-tools.tar.gz 
+	tar -zxvf dahdi-tools.tar.gz &>> $LOG
 	cd dahdi-tools*/
 	autoreconf -i && ./configure && make clean && make all && make install 
 	cd ..
