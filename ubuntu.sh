@@ -77,3 +77,37 @@ echo -e "LIBPRI instalado com sucesso!!!, continuando com o script..."
 sleep 5
 echo
 #
+############################## DOWNLOAD E INSTALAÇÃO DO ASTERISK ##############################
+ASTERISK="http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-17.1.0.tar.gz"
+if [ ! -f "/usr/src/lasterisk-17.1.0.tar.gz" ]; then
+    echo "O arquivo não existe e será feito Download!!"
+    cd /usr/src/
+    wget -O asterisk-17.1.0.tar.gz $ASTERISK &>> $LOG
+    sleep 3
+else
+    echo "O arquivo existe, não será feito Download!!"
+fi
+	tar zxvf asterisk* &>> $LOG
+	cd asterisk* &>> $LOG
+	./configure --with-jansson-bundled &&  make menuselect && make && make install && make config
+echo -e "ASTERISK instalado com sucesso!!!, continuando com o script..."
+############################## DOWNLOAD E INSTALAÇÃO DO ASTERISK ##############################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
