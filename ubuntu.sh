@@ -7,14 +7,13 @@ LOG="/var/log/$(echo $0 | cut -d'/' -f2)"
 sleep 3
 apt update &>> $LOG
 apt -y upgrade &>> $LOG
-apt-get install -y build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev linux-headers-$(uname -r) &>> $LOG
+apt-get install -y build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev &>> $LOG
+apt-get install -y linux-headers-$(uname -r) &>> $LOG
 apt-get install -y libsqlite3-dev uuid-dev git subversion libjansson-dev sqlite3 autoconf automake libtool libedit-dev &>> $LOG
 apt-get install -y libelf-dev libsqlite3-dev flex bison unzip sox openssl zlib1g-dev unixodbc unixodbc-dev vim &>> $LOG
 apt install -y build-essential libssl-dev libelf-dev libncurses5-dev libnewt-dev libxml2-dev  &>> $LOG
 apt install -y make wget openssl ncurses-base newt-tcl libxml2-dev gcc sqlite mysql-server &>> $LOG
 apt install -y config-package-dev configure-debian &>> $LOG
-apt install -y build-essential libssl-dev libelf-dev libncurses5-dev libnewt-dev libxml2-dev linux-headers-$(uname -r) &>> $LOG
-apt install -y libsqlite3-dev uuid-dev subversion libjansson-dev sqlite3 autoconf automake libtool libedit-dev flex bison libtool &>> $LOG
 apt install -y libtool-bin unzip sox openssl zlib1g-dev unixodbc unixodbc-dev vim git &>> $LOG
 apt install -y gcc g++ build-essential dkms libedit-dev flex bison libtool libtonezone-dev pkg-config &>> $LOG
 sleep 3
@@ -42,7 +41,7 @@ fi
 	make all &>> $LOG 
 	make install
 	make config &>> $LOG 
-	cd ..c
+	cd ..
 echo -e "DAHDI instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO DAHDI ##############################
 sleep 5
