@@ -1,12 +1,13 @@
 #!/bin/bash
 echo "### Instalação do Asterisk ###"
 export DEBIAN_FRONTEND="noninteractive"
-add-apt-repository multiverse
-add-apt-repository universe
+add-apt-repository multiverse &>> $LOG
+add-apt-repository universe &>> $LOG
 LOG="/var/log/$(echo $0 | cut -d'/' -f2)"
 sleep 3
 apt update &>> $LOG
 apt -y upgrade &>> $LOG
+apt update &>> $LOG
 apt-get install -y build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev &>> $LOG
 apt-get install -y linux-headers-$(uname -r) &>> $LOG
 apt-get install -y libsqlite3-dev uuid-dev git subversion libjansson-dev sqlite3 autoconf automake libtool libedit-dev &>> $LOG
@@ -58,12 +59,13 @@ else
     echo "O arquivo existe, não será feito Download!!"
 fi
 	tar -zxvf dahdi-tools.tar.gz &>> $LOG
-	cd dahdi-tools*/
+	cd dahdi-tools*/ &>> $LOG
 	autoreconf -i  &>> $LOG
 	./configure  &>> $LOG
 	make clean 
 	make all 
 	make install 
+	make install-config
 	cd ..
 echo -e "DAHDITOOLS instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO DAHDITOOLS ##############################
@@ -108,18 +110,19 @@ else
 fi
 	tar -zxvf asterisk-17.1.0.tar.gz &>> $LOG
 	cd asterisk-17.1.0 &>> $LOG
-	./configure --with-jansson-bundled 
+	./configure --with-jansson-bundled --libdir=/usr/lib64
 	make menuselect 
-	make 
-	make install 
-	make config
-	make samples
-	make basic-pbx
-	make progdocs
-echo -e "ASTERISK instalado com sucesso!!!, continuando com o script..."
-############################## DOWNLOAD E INSTALAÇÃO DO ASTERISK ##############################
+	make
 echo   "Resolvendo as dependências do suporte a Música e Sons em MP3, aguarde..."
 	bash contrib/scripts/get_mp3_source.sh  
+	make install 
+	make samples
+	make basic-pbx
+	make config
+	
+	
+echo -e "ASTERISK instalado com sucesso!!!, continuando com o script..."
+############################## DOWNLOAD E INSTALAÇÃO DO ASTERISK ##############################
 echo   "Resolvendo as dependências do suporte ao Codec iLBC, aguarde..."
 	bash contrib/scripts/get_ilbc_source.sh  
 echo   "Instalando as dependência do MP3 e ILBC utilizando o debconf-set-selections, aguarde..."
@@ -137,7 +140,7 @@ sleep 5
 echo -e "Download e configuração do Sons em Português/Brasil do Asterisk, aguarde..."
 	SOUNDS="/var/lib/asterisk/sounds/pt_br"
 	mkdir -v $SOUNDS
-	cp -v conf/asterisk/convert.sh $SOUNDS &>> $LOG
+	cp -v asterisk/conf/asterisk/convert.sh $SOUNDS &>> $LOG
 	cd $SOUNDS &>> $LOG
 	PTBRCORE="https://www.asterisksounds.org/pt-br/download/asterisk-sounds-core-pt-BR-sln16.zip"
 	PTBREXTRA="https://www.asterisksounds.org/pt-br/download/asterisk-sounds-extra-pt-BR-sln16.zip"
