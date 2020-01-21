@@ -118,9 +118,7 @@ echo   "Resolvendo as dependências do suporte a Música e Sons em MP3, aguarde.
 	make install 
 	make samples
 	make basic-pbx
-	make config
-	
-	
+	make config		
 echo -e "ASTERISK instalado com sucesso!!!, continuando com o script..."
 ############################## DOWNLOAD E INSTALAÇÃO DO ASTERISK ##############################
 echo   "Resolvendo as dependências do suporte ao Codec iLBC, aguarde..."
@@ -141,6 +139,7 @@ echo -e "Download e configuração do Sons em Português/Brasil do Asterisk, agu
 	SOUNDS="/var/lib/asterisk/sounds/pt_br"
 	mkdir -v $SOUNDS
 	cp -v asterisk/conf/asterisk/convert.sh $SOUNDS &>> $LOG
+	cp -v asterisk/conf/asterisk/sip.conf /etc/asterisk &>> $LOG
 	cd $SOUNDS &>> $LOG
 	PTBRCORE="https://www.asterisksounds.org/pt-br/download/asterisk-sounds-core-pt-BR-sln16.zip"
 	PTBREXTRA="https://www.asterisksounds.org/pt-br/download/asterisk-sounds-extra-pt-BR-sln16.zip"
