@@ -98,7 +98,7 @@ echo
 #
 ############################## DOWNLOAD E INSTALAÇÃO DO ASTERISK ##############################
 echo -e "Download e instalação do ASTERISK, aguarde..."
-ASTERISK="http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-17.1.0.tar.gz"
+ASTERISK="http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-17-current.tar.gz"
 COUNTRYCODE="55"
 if [ ! -f "/usr/src/lasterisk-17.1.0.tar.gz" ]; then
     echo "O arquivo não existe e será feito Download!!"
