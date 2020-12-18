@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 force_color_prompt=yes
-export DEBIAN_FRONTEND="noninteractive" # Não solicitar telas de configuração
+export DEBIAN_FRONTEND="noninteractive" # NÃ£o solicitar telas de configuraÃ§Ã£o
 clear
 # CORES
 # https://misc.flogisoft.com/bash/tip_colors_and_formatting
@@ -37,6 +37,8 @@ libtool libedit-dev flex bison libtool-bin unzip sox unixodbc unixodbc-dev libus
 libasound2-dev doxygen module-assistant rcconf coreutils libtiff-tools libsqlite3-dev git openssl \
 zlib1g-dev unixodbc unixodbc-dev vim wget apt linux-headers-$(uname -r)
 touch $SCRIPT_LOG/ast_dep1
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -66,6 +68,8 @@ if [ -f "$SCRIPT_LOG/remove_vim-tiny" ]; then
     else
 apt autoremove vim-tiny -y && touch $SCRIPT_LOG/remove_vim-tiny
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -78,6 +82,8 @@ if [ -f "$SCRIPT_LOG/remove_apt-cdrom" ]; then
 sed -i '/cdrom/d' /etc/apt/sources.list
 touch $SCRIPT_LOG/remove_apt-cdrom
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -89,6 +95,8 @@ if [ -f "$SCRIPT_LOG/install_vim" ]; then
     else
 apt install -y vim && touch $SCRIPT_LOG/install_vim
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -103,6 +111,8 @@ sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_
 sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
 /etc/init.d/ssh restart && grep RootL /etc/ssh/sshd_config && touch $SCRIPT_LOG/root_ssh
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -114,6 +124,8 @@ if [ -f "$SCRIPT_LOG/up-upg-rem" ]; then
     else
 apt update && apt upgrade -y && apt update && apt upgrade -y && apt autoremove && touch $SCRIPT_LOG/up-upg-rem
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -128,6 +140,8 @@ ip addr show  | grep inet | awk "{ print $2; }" | sed "s/\/.*$//" | grep -v inet
 echo -e " Host / Hostname / Dominio "
 cat /etc/hosts | grep -v "::" | grep -v "#" && touch $SCRIPT_LOG/conf-ip-host && echo
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -139,6 +153,8 @@ if [ -f "$SCRIPT_LOG/selinux" ]; then
     else
 apt install -y selinux-basics selinux-utils && sestatus && touch $SCRIPT_LOG/selinux
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -157,6 +173,8 @@ libspeex-dev libspeexdsp-dev libsqlite0-dev libvorbis-dev libvpb-dev libxslt1-de
 portaudio19-dev mpg123 libxml2 libcurl4-openssl-dev sudo
 apt install -y libcurl3 && apt autoremove -y && touch $SCRIPT_LOG/ast_dep2
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -189,6 +207,8 @@ tar -zxvf dahdi-tools.tar.gz && cd dahdi-tools*/
   touch $SCRIPT_LOG/dahdi
   cd ..
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -209,6 +229,8 @@ LIBPRI="http://downloads.asterisk.org/pub/telephony/libpri/libpri-current.tar.gz
   /usr/sbin/sestatus
 touch $SCRIPT_LOG/libpri
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -239,6 +261,8 @@ if [ -f "$SCRIPT_LOG/asterisk" ]; then
     systemctl enable asterisk && systemctl start asterisk && systemctl status asterisk  && $S3
     touch $SCRIPT_LOG/asterisk
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -274,6 +298,8 @@ $S3
     mv -i -v -f /etc/asterisk/sip.conf /etc/asterisk/sip.conf.bkp
 touch $SCRIPT_LOG/ast_add_sound
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
@@ -291,6 +317,8 @@ echo -e " Realizado anteriormente " && $S3
   cp $ARQ_MODIFICADOS/asterisk/ura.conf /etc/asterisk/
 touch $SCRIPT_LOG/ast_arq_pers
 $S3
+echo -e " Pressione Enter, para continuar. "
+read
 clear
 fi
 ###########################################################################################################################
