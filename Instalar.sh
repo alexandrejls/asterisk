@@ -55,7 +55,6 @@ cp -i -v -f $ARQ_MODIFICADOS/bash/ping_bash.sh /script && echo
 cp -i -v -f $ARQ_MODIFICADOS/bash/testeping.sh /script && echo 
 clear
 echo -e " Precione ENTER para reiniciar o computador. "
-clear
   read
   reboot
 fi
