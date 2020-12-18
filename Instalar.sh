@@ -40,7 +40,6 @@ zlib1g-dev unixodbc unixodbc-dev vim wget apt linux-headers-$(uname -r)
 touch $SCRIPT_LOG/ast_dep1
 echo -e " Pressione Enter, para continuar. "
 read
-clear
 fi
 ###########################################################################################################################
 $SEPARADOR
