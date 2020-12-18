@@ -148,6 +148,7 @@ echo -e " Preparando Install para O ASTERISK "
 if [ -f "$SCRIPT_LOG/ast_dep2" ]; then
     echo -e " Realizado anteriormente " && $S3
     else
+apt install -y pkg-config
 apt install -y linux-headers-$(uname -r)
 apt install -y binutils-dev freetds-dev git libbluetooth-dev libc-client2007e-dev libgsm1-dev \
 libgtk2.0-dev libical-dev libiksemel-dev libldap2-dev liblua5.1-0-dev libneon27-dev libogg-dev libpopt-dev \
@@ -193,7 +194,7 @@ fi
 ###########################################################################################################################
 $SEPARADOR 
 ###########################################################################################################################
-echo -e " Fazendo o download e instalação do LIBPRI do site Oficial "
+echo -e " Install do LIBPRI do site Oficial "
 if [ -f "$SCRIPT_LOG/libpri" ]; then
     echo -e " Realizado anteriormente " && $S3
     else
@@ -271,7 +272,7 @@ $S3
     mv -i -v -f /etc/asterisk/extensions.conf /etc/asterisk/extensions.conf.bkp
     mv -i -v -f /etc/asterisk/modules.conf /etc/asterisk/modules.conf.bkp
     mv -i -v -f /etc/asterisk/sip.conf /etc/asterisk/sip.conf.bkp
-    $SCRIPT_LOG/ast_add_sound
+touch $SCRIPT_LOG/ast_add_sound
 $S3
 clear
 fi
@@ -282,9 +283,12 @@ echo -e " Arquivos prontos, editados e personalizados "
 if [ -f "$SCRIPT_LOG/ast_arq_pers" ]; then
 echo -e " Realizado anteriormente " && $S3
     else
-
-
-
+  cp $ARQ_MODIFICADOS/asterisk/asterisk /etc/default/asterisk
+  cp $ARQ_MODIFICADOS/asterisk/asterisk.conf /etc/asterisk/
+  cp $ARQ_MODIFICADOS/asterisk/extensions.conf /etc/asterisk/
+  cp $ARQ_MODIFICADOS/asterisk/modules.conf /etc/asterisk/
+  cp $ARQ_MODIFICADOS/asterisk/sip.conf /etc/asterisk/ 
+  cp $ARQ_MODIFICADOS/asterisk/ura.conf /etc/asterisk/
 touch $SCRIPT_LOG/ast_arq_pers
 $S3
 clear
@@ -292,7 +296,10 @@ fi
 ###########################################################################################################################
 $SEPARADOR 
 ###########################################################################################################################    
-read
+
+
+
+
 
 AST_INSTALL="/root/asterisk" 
 $AST_INSTALL
@@ -308,12 +315,7 @@ echo -e " Fim dos teste "
 read
 
     
-  cp $AST_ARQUIVOS/asterisk /etc/default/asterisk
-  cp $AST_ARQUIVOS/asterisk.conf /etc/asterisk/
-  cp $AST_ARQUIVOS/extensions.conf /etc/asterisk/
-  cp $AST_ARQUIVOS/modules.conf /etc/asterisk/
-  cp $AST_ARQUIVOS/sip.conf /etc/asterisk/ 
-  cp $AST_ARQUIVOS/ura.conf /etc/asterisk/
+  
   cp /var/lib/asterisk/sounds/pt_BR/letters/s.* /var/lib/asterisk/sounds/pt_BR/digits/
   cd /var/lib/asterisk/sounds/pt_BR/digits/
   mv -ivf s.alaw pt-sss.alaw ; mv s.ulaw pt-sss.ulaw ; mv s.gsm pt-sss.gms
@@ -322,6 +324,7 @@ read
   systemctl stop asterisk
   systemctl start asterisk
   systemctl status asterisk
+  apt install -y net-tools
   netstat -an | grep 6666
 
 
