@@ -49,7 +49,7 @@ if [ -f "/root/.bashrc.bk.alexandre" ]; then
     echo -e " Realizado anteriormente " && $S3
     else
 mv -v -f /root/.bashrc /root/.bashrc.bk.alexandre -v && echo 
-cp -i -v -f $ARQ_MODIFICADOS/bash/.bashrc /root/ && echo 
+cp -i -v -f $ARQ_MODIFICADOS/bash/bashrc /root/.bashrc && echo 
 mkdir -v /script  && echo && mkdir -v -p /script/log
 cp -i -v -f $ARQ_MODIFICADOS/bash/ping_bash.sh /script && echo 
 cp -i -v -f $ARQ_MODIFICADOS/bash/testeping.sh /script && echo 
