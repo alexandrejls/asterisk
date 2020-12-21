@@ -18,6 +18,17 @@ ATUALIZACAO="Atualizado em: 16/12/2020"
 $SEPARADOR
 echo $AUTOR && echo $CRIACAO && echo $ATUALIZACAO
 ###########################################################################################################################
+$SEPARADOR 
+###########################################################################################################################
+echo -e " Remove apt cdrom " && $S2
+if [ -f "$SCRIPT_LOG/remove_apt-cdrom" ]; then
+    echo -e " Realizado anteriormente " && $S3
+    else
+sed -i '/cdrom/d' /etc/apt/sources.list
+touch $SCRIPT_LOG/remove_apt-cdrom
+$S3 && $S3 && $S3
+fi
+###########################################################################################################################
 $SEPARADOR && $S3
 ###########################################################################################################################
 echo -e " Alias de pastas " && $S2
@@ -25,6 +36,19 @@ AST_INSTALL="/root/asterisk" && echo $AST_INSTALL
 ARQ_MODIFICADOS="/root/asterisk/modificados" && echo $ARQ_MODIFICADOS
 SCRIPT_LOG="/script/log" && echo $SCRIPT_LOG
 $S3
+###########################################################################################################################
+$SEPARADOR 
+###########################################################################################################################
+echo -e " Libera root logar no SSH " && $S2
+if [ -f "$SCRIPT_LOG/root_ssh" ]; then
+    echo -e " Realizado anteriormente " && $S3
+    else
+sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
+/etc/init.d/ssh restart && grep RootL /etc/ssh/sshd_config && touch $SCRIPT_LOG/root_ssh
+$S3 && $S3 && $S3
+fi
 ###########################################################################################################################
 $SEPARADOR
 ###########################################################################################################################
@@ -38,8 +62,7 @@ libtool libedit-dev flex bison libtool-bin unzip sox unixodbc unixodbc-dev libus
 libasound2-dev doxygen module-assistant rcconf coreutils libtiff-tools libsqlite3-dev git openssl \
 zlib1g-dev unixodbc unixodbc-dev vim wget apt linux-headers-$(uname -r)
 touch $SCRIPT_LOG/ast_dep1
-echo -e " Pressione Enter, para continuar. "
-read
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR
@@ -66,24 +89,7 @@ if [ -f "$SCRIPT_LOG/remove_vim-tiny" ]; then
     echo -e " Realizado anteriormente " && $S3
     else
 apt autoremove vim-tiny -y && touch $SCRIPT_LOG/remove_vim-tiny
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
-fi
-###########################################################################################################################
-$SEPARADOR 
-###########################################################################################################################
-echo -e " Remove apt cdrom " && $S2
-if [ -f "$SCRIPT_LOG/remove_apt-cdrom" ]; then
-    echo -e " Realizado anteriormente " && $S3
-    else
-sed -i '/cdrom/d' /etc/apt/sources.list
-touch $SCRIPT_LOG/remove_apt-cdrom
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR   
@@ -93,26 +99,7 @@ if [ -f "$SCRIPT_LOG/install_vim" ]; then
     echo -e " Realizado anteriormente " && $S3
     else
 apt install -y vim && touch $SCRIPT_LOG/install_vim
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
-fi
-###########################################################################################################################
-$SEPARADOR 
-###########################################################################################################################
-echo -e " Libera root logar no SSH " && $S2
-if [ -f "$SCRIPT_LOG/root_ssh" ]; then
-    echo -e " Realizado anteriormente " && $S3
-    else
-sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
-/etc/init.d/ssh restart && grep RootL /etc/ssh/sshd_config && touch $SCRIPT_LOG/root_ssh
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -121,11 +108,9 @@ echo -e " Update & Upgrade APT " && $S2
 if [ -f "$SCRIPT_LOG/up-upg-rem" ]; then
     echo -e " Realizado anteriormente " && $S3
     else
+    apt list --upgradable
 apt update && apt upgrade -y && apt update && apt upgrade -y && apt autoremove && touch $SCRIPT_LOG/up-upg-rem
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -138,10 +123,7 @@ echo -e " IP "
 ip addr show  | grep inet | awk "{ print $2; }" | sed "s/\/.*$//" | grep -v inet6 && echo
 echo -e " Host / Hostname / Dominio "
 cat /etc/hosts | grep -v "::" | grep -v "#" && touch $SCRIPT_LOG/conf-ip-host && echo
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -151,10 +133,7 @@ if [ -f "$SCRIPT_LOG/selinux" ]; then
     echo -e " Realizado anteriormente " && $S3
     else
 apt install -y selinux-basics selinux-utils && sestatus && touch $SCRIPT_LOG/selinux
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -171,10 +150,7 @@ libpq-dev curl lynx apache2 sendmail sendmail-cf libresample1-dev libsnmp-dev li
 libspeex-dev libspeexdsp-dev libsqlite0-dev libvorbis-dev libvpb-dev libxslt1-dev lua5.1 python-dev uuid \
 portaudio19-dev mpg123 libxml2 libcurl4-openssl-dev sudo
 apt install -y libcurl3 && apt autoremove -y && touch $SCRIPT_LOG/ast_dep2
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -205,10 +181,7 @@ tar -zxvf dahdi-tools.tar.gz && cd dahdi-tools*/
   apt install -y dahdi dahdi-linux dahdi-source
   touch $SCRIPT_LOG/dahdi
   cd ..
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -227,10 +200,7 @@ LIBPRI="http://downloads.asterisk.org/pub/telephony/libpri/libpri-current.tar.gz
   make install 
   /usr/sbin/sestatus
 touch $SCRIPT_LOG/libpri
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -259,10 +229,7 @@ if [ -f "$SCRIPT_LOG/asterisk" ]; then
     make install-logrotate
     systemctl enable asterisk && systemctl start asterisk && systemctl status asterisk  && $S3
     touch $SCRIPT_LOG/asterisk
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -275,6 +242,7 @@ echo -e " Realizado anteriormente " && $S3
     else
     groupadd asterisk
     useradd -r -d /var/lib/asterisk -g asterisk asterisk
+    usermod -aG audio,dialout asterisk
     chown -Rv asterisk.asterisk /etc/asterisk
     chown -Rv asterisk.asterisk /var/{lib,log,spool}/asterisk
     chown -Rv asterisk.asterisk /usr/lib/asterisk
@@ -296,10 +264,7 @@ $S3
     mv -i -v -f /etc/asterisk/modules.conf /etc/asterisk/modules.conf.bkp
     mv -i -v -f /etc/asterisk/sip.conf /etc/asterisk/sip.conf.bkp
 touch $SCRIPT_LOG/ast_add_sound
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
@@ -315,10 +280,7 @@ echo -e " Realizado anteriormente " && $S3
   cp $ARQ_MODIFICADOS/asterisk/sip.conf /etc/asterisk/ 
   cp $ARQ_MODIFICADOS/asterisk/ura.conf /etc/asterisk/
 touch $SCRIPT_LOG/ast_arq_pers
-$S3
-echo -e " Pressione Enter, para continuar. "
-read
-clear
+$S3 && $S3 && $S3
 fi
 ###########################################################################################################################
 $SEPARADOR 
