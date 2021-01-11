@@ -56,11 +56,14 @@ echo -e " Preparando Install para O ASTERISK "
 if [ -f "$SCRIPT_LOG/ast_dep1" ]; then
     echo -e " Realizado anteriormente " && $S3
     else
-apt install -y build-essential libssl-dev libelf-dev libncurses5-dev libnewt-dev libxml2-dev \
-libsqlite3-dev uuid-dev subversion libjansson-dev sqlite3 autoconf automake dialog openvpn dos2unix \
-libtool libedit-dev flex bison libtool-bin unzip sox unixodbc unixodbc-dev libusb-dev fxload pkg-config \
-libasound2-dev doxygen module-assistant rcconf coreutils libtiff-tools libsqlite3-dev git openssl \
-zlib1g-dev unixodbc unixodbc-dev vim wget apt linux-headers-$(uname -r)
+apt update && apt-get upgrade -y && apt update && apt-get upgrade -y
+apt-get install -y build-essential libssl-dev libelf-dev libncurses5-dev libnewt-dev libxml2-dev
+apt-get install -y wget libsqlite3-dev uuid-dev git subversion libjansson-dev sqlite3 autoconf
+apt-get install -y automake libtool libedit-dev dialog openvpn flex bison libtool-bin unzip sox
+apt-get install -y unixodbc unixodbc-dev libusb-dev fxload pkg-config libasound2-dev doxygen
+apt-get install -y module-assistant rcconf coreutils libtiff-tools openssl zlib1g-dev
+apt-get install -y unixodbc unixodbc-dev wget apt 
+apt-get install -y linux-headers-$(uname -r) 
 touch $SCRIPT_LOG/ast_dep1
 $S3 && $S3 && $S3
 fi
@@ -206,7 +209,7 @@ fi
 $SEPARADOR 
 ###########################################################################################################################
 echo -e " Install do ASTERISK do site Oficial "
-ASTERISK="http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz"
+ASTERISK="http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16.15.1.tar.gz"
 COUNTRYCODE="55"
 cd /usr/src
 if [ -f "$SCRIPT_LOG/asterisk" ]; then
